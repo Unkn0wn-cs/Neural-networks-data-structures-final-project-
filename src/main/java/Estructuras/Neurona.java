@@ -39,5 +39,7 @@ public class Neurona {
     public void setPotencial(double potencial) {
         this.potencial = potencial;
     }
-    
+    public ListaSinapsis getConexiones() {
+    return conexiones;
+}
 }
