@@ -11,11 +11,18 @@ package Estructuras;
 public class Neurona {
     private String id;
     private double potencial;
+    private ListaSinapsis conexiones;
 
     public Neurona(String id, double potencial) {
         this.id = id;
         this.potencial = potencial;
+        this.conexiones = new ListaSinapsis();
     }
+    
+    public void agregarSinapsis(Sinapsis nuevaSinapsis){
+        this.conexiones.agregar(nuevaSinapsis);
+    }
+    
 
     public String getId() {
         return id;
