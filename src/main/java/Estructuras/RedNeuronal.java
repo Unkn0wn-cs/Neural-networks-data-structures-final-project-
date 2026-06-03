@@ -74,4 +74,11 @@ public class RedNeuronal {
     }
     System.out.println("---------------------------------");
 }
+    public Neurona[] getNeuronas() {
+    return neuronas;
+}
+
+    public int getCantidad() {
+    return cantidad;
+}
 }
