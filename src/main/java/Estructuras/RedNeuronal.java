@@ -35,14 +35,13 @@ public class RedNeuronal {
       return null;
     }
     
-    public void conectar(String idOrigen, String idDestino,double distancia,double coeficiente){
+    public void conectar(String idOrigen, String idDestino,double distancia,String idNeuro,double coeficiente){
         Neurona origen = buscarNeurona(idOrigen);
         Neurona destino = buscarNeurona(idDestino);
         if(origen==null||destino==null){
-            System.out.println("Alguna de las dos neuronas no existe");
             return;
         }
-        Sinapsis nuevaSinapsis = new Sinapsis(origen,destino,distancia,coeficiente);
+        Sinapsis nuevaSinapsis = new Sinapsis(origen,destino,distancia,idNeuro,coeficiente);
         origen.agregarSinapsis(nuevaSinapsis);
     }
    public void mostrarRed() {
@@ -81,4 +80,27 @@ public class RedNeuronal {
     public int getCantidad() {
     return cantidad;
 }
+    public int obtenerIndice(String id){
+        for(int i = 0; i < cantidad; i++){ 
+            if(this.neuronas[i].getId().equals(id)){
+                return i;
+            }
+        }
+        return -1; 
+    }
+    
+    private int Minimo(double[] distancias, boolean[] visitados, int n) {
+        double min = Double.MAX_VALUE;
+        int min_index = -1;
+        
+        for (int v = 0; v < n; v++) {
+            if (visitados[v] == false && distancias[v] <= min) {
+                min = distancias[v];
+                min_index = v;
+            }
+        }
+        return min_index;
+    }
+    
+    
 }

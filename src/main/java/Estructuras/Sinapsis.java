@@ -13,12 +13,14 @@ public class Sinapsis {
     private Neurona destino;
     private double distancia;
     private double coeficiente;
+    private String idNeuro;
 
-    public Sinapsis(Neurona origen, Neurona destino, double distancia, double coeficiente) {
+    public Sinapsis(Neurona origen, Neurona destino, double distancia,String idNeuro, double coeficiente) {
         this.origen = origen;
         this.destino = destino;
         this.distancia = distancia;
         this.coeficiente = coeficiente;
+        this.idNeuro = idNeuro;
         
     }
 

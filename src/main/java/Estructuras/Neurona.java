@@ -10,12 +10,10 @@ package Estructuras;
  */
 public class Neurona {
     private String id;
-    private double potencial;
     private ListaSinapsis conexiones;
 
-    public Neurona(String id, double potencial) {
+    public Neurona(String id) {
         this.id = id;
-        this.potencial = potencial;
         this.conexiones = new ListaSinapsis();
     }
     
@@ -30,14 +28,6 @@ public class Neurona {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public double getPotencial() {
-        return potencial;
-    }
-
-    public void setPotencial(double potencial) {
-        this.potencial = potencial;
     }
     public ListaSinapsis getConexiones() {
     return conexiones;
