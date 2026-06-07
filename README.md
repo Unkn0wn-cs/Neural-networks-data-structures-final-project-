@@ -1,0 +1,1 @@
+Nuestro proyecto implementa un simulador de red neuronal artificial que procesa la transmisión de impulsos químicos mediante estructuras de datos propias como grafos y tablas hash. Permite modelar el comportamiento del cerebro calculando rutas óptimas con Dijkstra, propagación de señales con BFS y los efectos físicos de la fatiga sináptica.
