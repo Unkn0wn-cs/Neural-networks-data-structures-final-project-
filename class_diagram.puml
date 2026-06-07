@@ -1,0 +1,86 @@
+@startuml
+title Diagrama de Clases - Red Sináptica
+
+class GrafoNeuronal {
+  - ListaEnlazada<Neurona> neuronas
+  + obtenerOCrearNeurona(id): Neurona
+  + conectarNeuronas(idOrigen,idDestino,dist,idNeuro,k)
+  + eliminarNeurona(id): boolean
+  + calcularRutaMasRapida(idOrigen,idDestino,TablaHash): ListaEnlazada<Neurona>
+  + guardarGrafoEnCSV(ruta): boolean
+  + eliminarSinapsis(idOrigen,idDestino): boolean
+}
+
+class Neurona {
+  - String id
+  - ListaEnlazada<Sinapsis> sinapsisSalientes
+  + getId(): String
+  + agregarSinapsis(Sinapsis)
+}
+
+class Sinapsis {
+  - Neurona origen
+  - Neurona destino
+  - double distancia
+  - String idNeurotransmisor
+  - double coeficienteEficiencia
+}
+
+class Neurotransmisor {
+  - String id
+  - String nombre
+  - double velocidad
+}
+
+class TablaHash {
+  - ListaEnlazada<EntradaHash>[] tabla
+  + put(clave, Neurotransmisor)
+  + get(clave): Neurotransmisor
+  + remove(clave): boolean
+  + getAll(): ListaEnlazada<Neurotransmisor>
+}
+
+class ListaEnlazada {
+  - Nodo cabeza
+  + agregar(T)
+  + getTamano(): int
+  + obtener(int): T
+  + eliminar(int)
+}
+
+class AnalizadorAlgoritmico {
+  + detectarZonasAisladas(grafo, idOrigen)
+  + detectarZonasAisladasBFS(grafo, idOrigen)
+  + calcularRutaMasRapida(grafo, idOrigen, idDestino, diccionario)
+  + simularFatigaGlobal(grafo)
+}
+
+class GestorArchivo {
+  + cargarDiccionario(TablaHash)
+  + cargarRedSinaptica(GrafoNeuronal, TablaHash)
+}
+
+class MonitorVisual {
+  + renderizarGrafo(GrafoNeuronal)
+  + resaltarZonasAisladas(...)
+}
+
+class VentanaPrincipal {
+  + accionCargarDiccionario()
+  + accionCargarRed()
+  + accionCalcularRuta(idOrigen,idDestino)
+  + accionAgregarNodo(id)
+  + accionEliminarNodo(id)
+}
+
+GrafoNeuronal "1" *-- "*" Neurona
+Neurona "1" *-- "*" Sinapsis
+Sinapsis --> Neurona : destino
+GrafoNeuronal ..> AnalizadorAlgoritmico
+GrafoNeuronal ..> TablaHash
+VentanaPrincipal --> GrafoNeuronal
+VentanaPrincipal --> AnalizadorAlgoritmico
+VentanaPrincipal --> TablaHash
+VentanaPrincipal --> MonitorVisual
+AnalizadorAlgoritmico --> ListaEnlazada
+@enduml
